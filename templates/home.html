@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}SchoolTracker - Diário de Bordo{% endblock %}
+{% block body_class %}body-home{% endblock %}
+
+{% block content %}
+<div class="container espacamento">
+    <div class="row justify-content-center align-items-center" style="height: 85vh;">
+        <div class="col-md-6 caixa-forms">
+            <h2 class="text-center">Diário de Bordo</h2>
+            <form method="POST" action="">
+                <div class="mb-3">  
+                    <label for="ra" class="form-label">RA:</label>
+                    <input type="ra" class="form-control" id="ra" name="ra" required>
+                </div>
+                <div class="text-center">                
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </div>
+            </form>
+            <br>
+            <div class="text-center">
+                <a href="{{ url_for('cadastro') }}">Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

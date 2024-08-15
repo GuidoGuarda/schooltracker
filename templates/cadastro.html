@@ -8,22 +8,22 @@
     <div class="row justify-content-center align-items-center" style="height: 85vh;">
         <div class="col-md-6 caixa-forms">
             <h2 class="text-center">Cadastre-se</h2>
-            <form method="POST" action="">
+            <form method="POST" action="/novoaluno">
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" class="form-control" id="nome" name="nome" required>
                 </div>
                 <div class="mb-3">  
                     <label for="ra" class="form-label">RA:</label>
-                    <input type="ra" class="form-control" id="ra" name="ra" required>
+                    <input type="text" class="form-control" id="ra" name="ra" required>
                 </div>
                 <div class="mb-3">
                     <label for="tempo" class="form-label">Tempo:</label>
-                    <input type="tempo" class="form-control" id="tempo" name="tempo" required>
+                    <input type="text" class="form-control" id="tempo" name="tempoestudo" required>
                 </div>
                 <div class="mb-3">
                     <label for="renda-familiar" class="form-label">Renda Familiar:</label>
-                    <input type="renda-familiar" class="form-control" id="renda-familiar" name="renda-familiar" required>
+                    <input type="text" class="form-control" id="money" name="rendafamiliar" required>
                 </div>
                 <div class="text-center">                
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -31,9 +31,10 @@
             </form>
             <br>
             <div class="text-center">
-                <a href="">Cadastre-se</a>
+                <a href="{{ url_for('index') }}">Voltar</a>
             </div>        
         </div>
     </div>
 </div>
 {% endblock %}
+

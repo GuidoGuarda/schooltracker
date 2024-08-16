@@ -11,26 +11,25 @@ $(document).ready(function() {
         removeMaskOnSubmit: true
     });
 
-    // Aplica a máscara ao campo RA para permitir apenas números e limitar a 8 dígitos
+    
     $('#ra').inputmask({
-        mask: '99999999',  // Define a máscara para permitir até 8 dígitos numéricos
+        mask: '99999999',
         definitions: {
             '9': {
                 validator: '[0-9]',
                 cardinality: 1
             }
         },
-        placeholder: '',  // Remove o placeholder padrão
+        placeholder: 'xxxxxxxx',
         autoUnmask: true,
         rightAlign: false,
         removeMaskOnSubmit: true
     });
 
-    // Adiciona uma validação adicional para garantir que o campo RA tenha no máximo 8 dígitos
     $('#ra').on('input', function() {
-        var value = $(this).val().replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        var value = $(this).val().replace(/\D/g, '');
         if (value.length > 8) {
-            $(this).val(value.slice(0, 8)); // Limita o valor a 8 dígitos
+            $(this).val(value.slice(0, 8));
         }
     });
     

@@ -8,7 +8,8 @@
     padding: 57px;
 }
 
-/* Tela de cadastro */
+/* ------------------------------------------------- */
+
 .body-cadastro{
     background-image: url('../images/cadastro.jpg');
     background-size: cover;
@@ -17,8 +18,15 @@
     height: 100vh;    
 }
 
-/* Tela de cadastro */
 .body-home{
+    background-image: url('../images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;    
+}
+
+.body-listaaluno{
     background-image: url('../images/home.jpg');
     background-size: cover;
     background-position: center;

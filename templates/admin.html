@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}SchoolTracker - Diário de Bordo{% endblock %}
-{% block body_class %}body-home{% endblock %}
+{% block title %}SchoolTracker - Login Admin{% endblock %}
+{% block body_class %}body-admin{% endblock %}
 
 {% block content %}
 <div class="container espacamento">
     <div class="row justify-content-center align-items-center" style="height: 85vh;">
         <div class="col-md-6 caixa-forms">
-            <h2 class="text-center">Diário de Bordo</h2>
+            <h2 class="text-center">Login Admin</h2>
             {% if mensagem %}
                 <h4 class="text-danger text-center">{{ mensagem }}</h4>
             {% endif %}
             <form method="POST" action="">
                 <div class="mb-3">  
-                    <label for="ra" class="form-label">RA:</label>
-                    <input type="text" class="form-control" id="ra" name="ra" required>
+                    <label for="username" class="form-label">Usuário:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">  
+                    <label for="password" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <div class="text-center">                
                     <button type="submit" class="btn btn-primary">Entrar</button>
@@ -22,7 +26,7 @@
             </form>
             <br>
             <div class="text-center">
-                <a href="{{ url_for('cadastro') }}">Cadastre-se</a>
+                <a href="{{ url_for('index') }}">Voltar</a>
             </div>
         </div>
     </div>

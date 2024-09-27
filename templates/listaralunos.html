@@ -6,45 +6,60 @@
 {% block content %}
 <div class="container espacamento">
     <div class="row justify-content-center align-items-center" style="height: 20vh;">
-        <div class="container mt-5 caixa-forms">
+        <div class="col-md-10 caixa-forms">
+            <h2 class="text-center">Listar Alunos</h2>
+            <form method="GET" action="{{ url_for('listar_alunos') }}" class="mb-3 d-flex">
+                <input type="text" class="form-control me-2" name="search" placeholder="Pesquisar por RA ou Nome" value="{{ search }}">
+                <button class="btn btn-primary btn-sm" type="submit">
+                    <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+                </button>
+                <a href="{{ url_for('listar_alunos') }}" class="btn btn-secondary btn-sm ms-2">
+                    <i class="fas fa-times"></i> <!-- Ícone de X -->
+                </a>
+            </form>                               
             {% if alunos %}
             <table class="table table-striped">
                 <thead>
-                <tr>
-                    <th scope="col">RA</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Tempo de Estudo</th>
-                    <th scope="col">Renda Familiar</th>
-                </tr>
+                    <tr>
+                        <th scope="col">RA</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Tempo de Estudo</th>
+                        <th scope="col">Renda Familiar</th>
+                        <th scope="col">Operações</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for aluno in alunos %}
-                <tr>
-                    <td scope="row">{{ aluno.ra }}</td>
-                    <td>{{ aluno.nome }}</td>
-                    <td>{{ aluno.tempoestudo }}</td>
-                    <td>{{ aluno.rendafamiliar }}</td>
-                </tr>
-                {% endfor %}
+                    {% for aluno in alunos %}
+                    <tr>
+                        <td scope="row">{{ aluno.ra }}</td>
+                        <td><a href="{{ url_for('detalhe_aluno', ra=aluno.ra) }}">{{ aluno.nome }}</a></td>
+                        <td>{{ aluno.tempoestudo }}</td>
+                        <td>{{ aluno.rendafamiliar }}</td>
+                        <td>
+                            <a href="{{ url_for('atualizar_aluno', ra=aluno.ra) }}">Editar</a> | 
+                            <form action="{{ url_for('excluir_aluno', ra=aluno.ra) }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-link" onclick="return confirm('Tem certeza que deseja excluir o aluno {{ aluno.nome }}?');">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
-
             <!-- Navegação de Paginação -->
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     {% if page > 1 %}
                         <li class="page-item">
-                            <a class="page-link" href="{{ url_for('listar_alunos', page=1) }}" aria-label="Primeira">
+                            <a class="page-link" href="{{ url_for('listar_alunos', page=1, search=search) }}" aria-label="Primeira">
                                 <span aria-hidden="true">&laquo;&laquo;</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{ url_for('listar_alunos', page=page-1) }}" aria-label="Anterior">
+                            <a class="page-link" href="{{ url_for('listar_alunos', page=page-1, search=search) }}" aria-label="Anterior">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                     {% endif %}
-
                     {% for num in range(1, total_pages + 1) %}
                         {% if num == page %}
                             <li class="page-item active" aria-current="page">
@@ -52,19 +67,18 @@
                             </li>
                         {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="{{ url_for('listar_alunos', page=num) }}">{{ num }}</a>
+                                <a class="page-link" href="{{ url_for('listar_alunos', page=num, search=search) }}">{{ num }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}
-
                     {% if page < total_pages %}
                         <li class="page-item">
-                            <a class="page-link" href="{{ url_for('listar_alunos', page=page+1) }}" aria-label="Próxima">
+                            <a class="page-link" href="{{ url_for('listar_alunos', page=page+1, search=search) }}" aria-label="Próxima">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{ url_for('listar_alunos', page=total_pages) }}" aria-label="Última">
+                            <a class="page-link" href="{{ url_for('listar_alunos', page=total_pages, search=search) }}" aria-label="Última">
                                 <span aria-hidden="true">&raquo;&raquo;</span>
                             </a>
                         </li>

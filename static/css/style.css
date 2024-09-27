@@ -33,3 +33,27 @@
     background-repeat: no-repeat;
     height: 100vh;    
 }
+
+.body-atualizar{
+    background-image: url('../images/cadastro.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;    
+}
+
+.body-detalhe{
+    background-image: url('../images/cadastro.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;    
+}
+
+.body-admin{
+    background-image: url('../images/cadastro.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;    
+}

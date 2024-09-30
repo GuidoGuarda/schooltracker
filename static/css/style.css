@@ -1,59 +1,137 @@
-/* Estilização geral das caixas de formulário */
-.caixa-forms{
-    background-color: #FFFFFF;
+/* Estilização geral */
+body {
+    font-family: 'Poppins', sans-serif; /* Fonte para o corpo do texto */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* Fonte para títulos */
+    font-weight: 600; /* Ajuste o peso conforme necessário */
+    color: #333333;
+}
+
+.caixa-forms {
+    background-color: rgba(255, 255, 255, 0.9); /* Branco com 90% de opacidade */
     border-radius: 28px;
     padding: 27px 19px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
 }
-.espacamento{
-    padding: 57px;
+
+.caixa-quem {
+    background-color: rgba(255, 255, 255, 0.9); /* Branco com 90% de opacidade */
+    border-radius: 28px;
+    padding: 27px 19px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.espacamento {
+    padding: 0px 70px;
+}
+
+.input-home {
+    margin-top: 15px;
+}
+
+.navbar {
+    background-color: #4A90E2; /* Azul Claro */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Sombra abaixo da navbar */
+}
+.navbar-brand,
+.nav-link {
+    color: #fff !important; /* Texto branco */
+}
+.nav-link:hover {
+    background-color: #2ECC71; /* Verde Menta ao passar o mouse */
+    color: #fff !important;
+}
+.navbar-nav .active {
+    font-weight: bold; /* Destaca o item ativo */
+    background-color: #2ECC71; /* Verde Menta */
+}
+footer {
+    background-color: #333; /* Cinza escuro */
+    color: #fff; /* Texto branco */
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    color: #2ECC71; /* Cor verde da marca */
+    font-weight: bold;
+}
+
+a:hover {
+    color: #1ABC9C; /* Cor do hover, ajuste como preferir */
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1; /* Faz a container ocupar o espaço disponível */
+}
+
+footer {
+    margin-top: auto; /* Move o footer para o final */
+    background-color: #333; /* Cinza escuro */
+    color: #fff; /* Texto branco */
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    width: 100%;
 }
 
 /* ------------------------------------------------- */
 
-.body-cadastro{
-    background-image: url('../images/cadastro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;    
+.body-home {
+    background-image: url('../images/bg_cinza.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh;
+    width: 100%; 
+    display: flex;
+    flex-direction: column; 
 }
 
-.body-home{
-    background-image: url('../images/home.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;    
+.body-listaaluno, .body-atualizar, .body-cadastro, .body-detalhe {
+    background-image: url('../images/bg_config.jpg');
+    background-size: auto; 
+    background-position: center; 
+    background-repeat: repeat; 
+    height: 100vh;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;    
 }
 
-.body-listaaluno{
-    background-image: url('../images/home.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;    
+.body-admin {
+    background-image: url('../images/bg_admin.jpg');
+    background-size: 200% auto; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh;
+    width: 100%; 
+    display: flex;
+    flex-direction: column; 
 }
 
-.body-atualizar{
-    background-image: url('../images/cadastro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;    
-}
-
-.body-detalhe{
-    background-image: url('../images/cadastro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;    
-}
-
-.body-admin{
-    background-image: url('../images/cadastro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;    
+.body-quem-somos {
+    background-image: url('../images/bg_quem.jpg');
+    background-size: 160% auto; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh;
+    width: 100%; 
+    display: flex;
+    flex-direction: column; 
 }

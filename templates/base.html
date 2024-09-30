@@ -8,47 +8,54 @@
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- jquery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>    
 
     <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 <body class='{% block body_class %}default-class{% endblock %}'>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">SchoolTracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Início</a>
+            <li class="nav-item {% if active_page == 'index' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('index') }}">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('cadastro') }}">Cadastrar</a>
+            <li class="nav-item {% if active_page == 'cadastro' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('cadastro') }}">Cadastro</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('listar_alunos') }}">Listar Alunos</a>
+            <li class="nav-item {% if active_page == 'quemsomos' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('quem_somos') }}">Quem Somos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contato</a>
+            <li class="nav-item {% if active_page == 'listar_alunos' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('listar_alunos') }}">Listar Alunos</a>
             </li>
             {% if 'user_id' in session %}
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>  <!-- Link de Logout -->
             </li>
             {% endif %}
-          </ul>
+        </ul>
+        
         </div>
     </nav>
-    
+
     {% block content %}{% endblock %}
+
+    <footer>
+        <small><p>&copy; 2024 - Todos os direitos reservados | Desenvolvido por PandasDEV <br> Versão 1.0</p></small>
+    </footer>
 
     <!-- Scripts do Popper e Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>

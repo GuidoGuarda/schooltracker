@@ -5,8 +5,8 @@
 
 {% block content %}
 <div class="container espacamento">
-    <div class="row justify-content-center align-items-center" style="height: 20vh;">
-        <div class="col-md-10 caixa-forms">
+    <div class="row justify-content-center align-items-center" style="margin-top: 8%; margin-bottom: 70px;">
+        <div class="col-md-12 caixa-forms">
             <h2 class="text-center">Listar Alunos</h2>
             <form method="GET" action="{{ url_for('listar_alunos') }}" class="mb-3 d-flex">
                 <input type="text" class="form-control me-2" name="search" placeholder="Pesquisar por RA ou Nome" value="{{ search }}">

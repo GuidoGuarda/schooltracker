@@ -1,25 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bootstrap import Bootstrap
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import MetaData
 from sqlalchemy.ext.automap import automap_base
 from functools import wraps
 from datetime import datetime
-import urllib.parse
+from conexao import ConexaoSingleton
 
 app = Flask(__name__)
 Bootstrap(app)
 app.secret_key = 'sua_chave_secreta'  # Defina uma chave secreta para usar a sessão
 
-# Configuração do Banco de Dados
-user = 'root'
-password = urllib.parse.quote_plus('')
-host = 'localhost'
-database = 'schooltracker'
-connection_string = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+conexao_instance = ConexaoSingleton()
+engine = conexao_instance.get_engine()
 
-# Criar a engine e refletir o banco de dados existente
-engine = create_engine(connection_string)
 metadata = MetaData()
 metadata.reflect(engine)
 

@@ -11,11 +11,23 @@
             <p><strong>RA:</strong> {{ aluno.ra }}</p>
             <form action="{{ url_for('adicionar_diario', ra=aluno.ra) }}" method="POST">
                 <div class="form-group">
-                    <label for="texto">Escreva seu diário de bordo:</label>
-                    <textarea id="texto" name="texto" class="form-control" rows="5" required></textarea>
+                    <label for="texto">Escreva seu diário de bordo: (ou clique no icone ao lado para utilizar a SENIA)</label>
+                    <div class="input-group">
+                        <textarea id="texto" name="texto" class="form-control" rows="5" required></textarea>
+                        <div class="input-group-append">
+                            <button id="activate-senia" class="btn btn-info" type="button">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success btn-block">Adicionar Diário</button>
             </form>
+
+            <div id="microphone-status" class="text-center mt-2" style="display: none;">
+                <span id="status-text"></span>
+                <i id="status-icon" class="fas"></i>
+            </div>
 
             <br>
 
@@ -39,4 +51,64 @@
         </div>
     </div>
 </div>
+
+<script>
+    const statusText = document.getElementById('status-text');
+    const statusIcon = document.getElementById('status-icon');
+    const microphoneStatus = document.getElementById('microphone-status');
+
+    // Função para listar voz feminina
+    function getFemaleVoice() {
+        return new Promise((resolve) => {
+            window.speechSynthesis.onvoiceschanged = function() {
+                const voices = window.speechSynthesis.getVoices();
+                const femaleVoice = voices.find(voice => voice.name.includes('Female'));
+                resolve(femaleVoice || voices[0]); // Retorna a primeira voz se não encontrar uma feminina
+            };
+        });
+    }
+
+    document.getElementById('activate-senia').addEventListener('click', async function() {
+        const nome = '{{ aluno.nome }}';
+        const femaleVoice = await getFemaleVoice();
+        const msg = new SpeechSynthesisUtterance(`Olá ${nome}, sou a SENIA, sua assistente virtual e gostaria de saber como foi sua aula hoje.`);
+        msg.voice = femaleVoice; // Define a voz feminina
+
+        window.speechSynthesis.speak(msg);
+
+        // Espera até que a fala termine antes de iniciar o reconhecimento
+        msg.onend = function() {
+            startRecognition();
+        };
+    });
+
+    function startRecognition() {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'pt-BR';
+
+        recognition.onstart = function() {
+            microphoneStatus.style.display = 'block';
+            statusText.textContent = 'Microfone ativado, escutando...';
+            statusIcon.className = 'fas fa-microphone'; // Ícone de microfone ativo
+        };
+
+        recognition.onresult = function(event) {
+            const texto = event.results[0][0].transcript;
+            document.getElementById('texto').value = texto; // Adiciona texto ao textarea
+        };
+
+        recognition.onerror = function(event) {
+            statusText.textContent = 'Erro no reconhecimento de voz: ' + event.error;
+            statusIcon.className = 'fas fa-exclamation-triangle'; // Ícone de erro
+        };
+
+        recognition.onend = function() {
+            statusText.textContent = 'Microfone desativado.';
+            statusIcon.className = 'fas fa-microphone-slash'; // Ícone de microfone desativado
+            microphoneStatus.style.display = 'none'; // Oculta o status do microfone
+        };
+
+        recognition.start();
+    }
+</script>
 {% endblock %}

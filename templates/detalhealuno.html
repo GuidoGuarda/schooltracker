@@ -57,16 +57,17 @@
     const statusIcon = document.getElementById('status-icon');
     const microphoneStatus = document.getElementById('microphone-status');
 
-    // Função para listar voz feminina
-    function getFemaleVoice() {
+   // Função para listar voz feminina
+   function getFemaleVoice() {
         return new Promise((resolve) => {
             window.speechSynthesis.onvoiceschanged = function() {
                 const voices = window.speechSynthesis.getVoices();
-                const femaleVoice = voices.find(voice => voice.name.includes('Female'));
-                resolve(femaleVoice || voices[0]); // Retorna a primeira voz se não encontrar uma feminina
+                const femaleVoice = voices.find(voice => voice.name.includes('Microsoft Maria'));
+                resolve(femaleVoice || voices[0]); 
             };
         });
     }
+
 
     document.getElementById('activate-senia').addEventListener('click', async function() {
         const nome = '{{ aluno.nome }}';
